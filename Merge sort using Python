@@ -1,0 +1,51 @@
+#Merge sort
+def merge(Arr, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+    L = [0] * (n1)
+    R = [0] * (n2)
+    for i in range(0, n1):
+        L[i] = Arr[l + i]
+    for j in range(0, n2):
+        R[j] = Arr[m + 1 + j]
+    i = 0     
+    j = 0    
+    k = l     
+    while i < n1 and j < n2:
+        if L[i] <= R[j]:
+            Arr[k] = L[i]
+            i += 1
+        else:
+            Arr[k] = R[j]
+            j += 1
+        k += 1
+    while i < n1:
+        Arr[k] = L[i]
+        i += 1
+        k += 1
+    while j < n2:
+        Arr[k] = R[j]
+        j += 1
+        k += 1
+def mergeSort(Arr, l, r):
+    if l < r:
+        m = l+(r-l)//2
+        mergeSort(Arr, l, m)
+        mergeSort(Arr, m+1, r)
+        merge(Arr, l, m, r)
+Arr = [-2,10,-4,-1,-12, 11, 13, 5, 6, 7]
+n = len(Arr)
+print("Given array is")
+for i in range(n):
+    print("%d" % Arr[i],end=" ")
+mergeSort(Arr, 0, n-1)
+print("\n\nSorted array is")
+for i in range(n):
+    print("%d" % Arr[i],end=" ")
+   # Output-
+#   Given array is
+#-2 10 -4 -1 -12 11 13 5 6 7
+#
+#Sorted array is
+#-12 -4 -2 -1 5 6 7 10 11 13
+    
